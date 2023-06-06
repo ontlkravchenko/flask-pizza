@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+{% block title %}
+Cyber Pizza
+{% endblock %}
+{% block main %}
+<nav>
+    <a href="/order">Order</a>
+    <a href="/logout">Log out</a>
+</nav>
+<div class="cart-container">
+    <table>
+        <tr>
+            <th>Your cart is empty :(</th>
+        </tr>
+    </table>
+</div>
+{% endblock %}

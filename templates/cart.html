@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+{% block title %}
+Cyber Pizza
+{% endblock %}
+{% block main %}
+<nav>
+    <a href="/order">Order</a>
+    <a href="/logout">Log out</a>
+</nav>
+<div class="cart-container">
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Size</th>
+            <th>Thickness</th>
+            <th>Toppings</th>
+            <th></th>
+        </tr>
+        {% for i in range(hlen) %}
+        <tr>
+            <td>{{ products[history[i]['name_id']] }}</td>
+            <td>{{ sizes[history[i]['size']] }}</td>
+            <td>{{ thick[history[i]['thickness']] }}</td>
+            <td>{{ top[history[i]['toppings']] }}</td>
+            <td>
+                <form action="/remove_from_cart" method="post">
+                    <input type="text" value={{i}} name="row" style="display: none">
+                    <input type="submit" value="Remove">
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+{% endblock %}

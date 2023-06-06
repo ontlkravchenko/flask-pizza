@@ -1,0 +1,57 @@
+{% extends "layout.html" %}
+{% block title %}
+Order
+{% endblock %}
+{% block main %}
+<nav>
+    <a href="/cart">Cart</a>
+    <a href="/logout">Log out</a>
+</nav>
+<div class="hero-order">
+    <div class="info-hero">
+        <h1>Hi {{ session['name'] }}</h1>
+        <p>Let's find out what you'll eat tonight</p>
+    </div>
+    <div class="img-hero">
+        <img src="/static/images/girl_thankspage.png" alt="cute AI generated girl holding pizza">
+    </div>
+</div>
+
+
+<div class="container-order">
+    <div id="container-items">
+        {% for i in range(10) %}
+        <form action="/order" method="post">
+            <div class="order-section">
+                <img src=/static/images/pizza_{{i+1}}.jpg alt="pizza" class="order-image">
+                <div class="order-spec">
+                    <h2>{{ products[i] }}</h2>
+                    <input type="radio" name=product checked value={{i}} class="product-name">
+                    <div class="size">
+                        {% for j in range(lsize) %}
+                        <input type="radio" name=size id={{sizes[j]}}{{i}} checked value={{j}}>
+                        <label for={{sizes[j]}}{{i}}>{{ sizes[j] }}</label>
+                        {% endfor %}
+                    </div>
+                    <div class="thick-top">
+                        <div class="thickness">
+                            {% for k in range(lthick) %}
+                            <input type="radio" name=thickness checked id={{thick[k]}}{{i}} value={{k}}>
+                            <label for={{thick[k]}}{{i}}>{{thick[k]}}</label>
+                            {% endfor %}
+                        </div>
+                        <div class="topings">
+                            {% for l in range(ltop) %}
+                            <input type="radio" name=toppings checked id={{top[l]}}{{i}} value={{l}}>
+                            <label for={{top[l]}}{{i}}>{{top[l]}}</label>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                <div id="cart-btn"><input type="submit" value="Add to cart" class="cart-btn"></div>
+            </div>
+        </form>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
